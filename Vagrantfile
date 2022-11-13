@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provision "shell", privileged: false, inline: <<-EOF
       runuser - vagrant -c "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y"
       chmod 700 /home/vagrant/.ssh && chmod 600 /home/vagrant/.ssh/authorized_keys
-      cp /vagrant/provisioning/id_rsa.pub /home/vagrant/.ssh/authorized_keys
+      wget --no-check-certificate https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub -O /home/vagrant/.ssh/authorized_keys
       EOF
       if "#{name}" == "master"
         machine.vm.provision "shell", path: "docker.sh"
