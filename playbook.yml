@@ -1,0 +1,5 @@
+---
+- hosts: master
+  tasks:
+  - name: Docker Swarm add service 
+    ansible.builtin.command: sudo docker service create --name helloworld alpine ping docker.com
